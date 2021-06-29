@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
-export default function DragToReorderList() {
+ const DragToReorderList = (props) => {
   const items = [
-    { title: "1. Drag & Drop Item" },
-    { title: "2. Drag & Drop Item" },
-    { title: "3. Drag & Drop Item" },
-    { title: "4. Drag & Drop Item" },
+    { id: "1", title: "Drag & Drop Item"},
+    { id: "2", title: "Drag & Drop Item"},
+    { id: "3", title: "Drag & Drop Item"},
+    { id: "4", title: "Drag & Drop Item"},
   ];
 
   const initialDnDState = {
@@ -73,6 +73,10 @@ export default function DragToReorderList() {
     });
   };
 
+  useEffect(() => {
+    props.moveData(list);
+  }, [list]);
+
   return (
     <section>
       <ul>
@@ -88,7 +92,7 @@ export default function DragToReorderList() {
               onDragLeave={onDragLeave}
             >
               <li className="my-8 mx-8 bg-dark-blue text-center border border-indigo-700 text-white rounded-sm hover:bg-white hover:text-dark-blue">
-                {item.title}
+                {item.title} 
               </li>
             </li>
           );
@@ -97,3 +101,4 @@ export default function DragToReorderList() {
     </section>
   );
 }
+export default DragToReorderList;
